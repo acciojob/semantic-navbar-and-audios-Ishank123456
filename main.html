@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <link rel="stylesheet" href="styles.css">
@@ -35,6 +35,31 @@
             Your browser does not support the audio element.
         </audio>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const audios = document.querySelectorAll('audio');
+
+            if (audios.length === 3) {
+                audios.forEach((audio, index) => {
+                    const expectedUrls = [
+                        "http://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue_-_The_Neverwritten_Role_Playing_Game.mp3",
+                        "http://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg",
+                        "http://codeskulptor-demos.commondatastorage.googleapis.com/pang/paza-moduless.mp3"
+                    ];
+
+                    const source = audio.querySelector('source');
+                    if (source && source.src === expectedUrls[index] && source.type === 'audio/mpeg') {
+                        console.log(`Audio ${index + 1} is correct.`);
+                    } else {
+                        console.error(`Audio ${index + 1} has incorrect attributes.`);
+                    }
+                });
+            } else {
+                console.error("Expected 3 audio elements, but found " + audios.length);
+            }
+        });
+    </script>
 </body>
 
 </html>
